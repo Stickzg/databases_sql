@@ -39,6 +39,32 @@ LOCK TABLES `authors` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `book_instances`
+--
+
+DROP TABLE IF EXISTS `book_instances`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book_instances` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `book_id` (`book_id`),
+  CONSTRAINT `book_instances_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book_instances`
+--
+
+LOCK TABLES `book_instances` WRITE;
+/*!40000 ALTER TABLE `book_instances` DISABLE KEYS */;
+INSERT INTO `book_instances` VALUES (1,3);
+/*!40000 ALTER TABLE `book_instances` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `books`
 --
 
@@ -79,12 +105,18 @@ DROP TABLE IF EXISTS `borrowed_books`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `borrowed_books` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_id` int(10) DEFAULT NULL,
+  `book_instances_id` int(11) DEFAULT NULL,
   `visitor_id` int(7) DEFAULT NULL,
   `borrowed_at` date DEFAULT NULL,
   `expire_at` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `employee_gaveout_by_id` int(11) DEFAULT NULL,
+  `employee_returned_by_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `employee_returned_by_id` (`employee_returned_by_id`),
+  KEY `employee_gaveout_by_id` (`employee_gaveout_by_id`),
+  CONSTRAINT `borrowed_books_ibfk_1` FOREIGN KEY (`employee_returned_by_id`) REFERENCES `employees` (`id`),
+  CONSTRAINT `borrowed_books_ibfk_2` FOREIGN KEY (`employee_gaveout_by_id`) REFERENCES `employees` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +125,7 @@ CREATE TABLE `borrowed_books` (
 
 LOCK TABLES `borrowed_books` WRITE;
 /*!40000 ALTER TABLE `borrowed_books` DISABLE KEYS */;
+INSERT INTO `borrowed_books` VALUES (1,NULL,3,NULL,NULL,NULL,NULL),(2,2,23,'2017-03-08','2017-05-28',NULL,NULL);
 /*!40000 ALTER TABLE `borrowed_books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-30 17:07:35
+-- Dump completed on 2017-11-03  9:10:27
