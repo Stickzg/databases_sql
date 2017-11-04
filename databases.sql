@@ -26,7 +26,7 @@ CREATE TABLE `authors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `authors` (
 
 LOCK TABLES `authors` WRITE;
 /*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (1,'Tolkien');
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +93,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES ('Gyuruk Ura',1234567890,'Sylmarion',2,NULL,1),('Warcraft',123543,'Thrall',3,NULL,2),('Harry Potter',123543,'and goblet of fire',2,NULL,3),('Harry Potter',123543,'and the philosophers stone',2,NULL,4),('Necronomicon',321456,'do not read',2,NULL,5),('Red-snow',321456,'shortdesc here',2,NULL,6),('Harry Potter',123543,'and the philosophers stone',2,NULL,7);
+INSERT INTO `books` VALUES ('Gyuruk Ura',1234567890,'Sylmarion',2,1,1),('Warcraft',123543,'Thrall',3,1,2),('Harry Potter',123543,'and goblet of fire',2,1,3),('Harry Potter',123543,'and the philosophers stone',2,1,4),('Necronomicon',321456,'do not read',2,1,5),('Red-snow',321456,'shortdesc here',2,1,6),('Harry Potter',123543,'and the philosophers stone',2,1,7);
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-03  9:10:27
+-- Dump completed on 2017-11-04 12:45:58
